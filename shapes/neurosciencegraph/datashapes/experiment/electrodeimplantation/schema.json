@@ -1,0 +1,70 @@
+{
+  "@context": [
+    "{{base}}/contexts/neurosciencegraph/core/schema/v0.1.0",
+    {
+      "this": "{{base}}/schemas/neurosciencegraph/electrophysiology/electrodeimplantation/v0.1.0/shapes/"
+    }
+  ],
+  "@type": "nxv:Schema",
+  "imports": [
+    "{{base}}/schemas/neurosciencegraph/commons/activity/v0.1.0",
+    "{{base}}/schemas/neurosciencegraph/commons/typedlabeledontologyterm/v0.1.0"
+  ],
+  "owl:deprecated":true,
+  "shapes": [
+    {
+      "@id": "this:ElectrodeImplantationShape",
+      "@type": "sh:NodeShape",
+      "label": "Electrode implantation shape definition",
+      "targetClass": "nsg:ElectrodeImplantation",
+      "nodeKind": "sh:BlankNodeOrIRI",
+      "and": [
+        {
+          "node": "{{base}}/schemas/neurosciencegraph/commons/activity/v0.1.0/shapes/ActivityShape"
+        },
+        {
+          "property": [
+            {
+              "path": "prov:generated",
+              "description": "The cranial window(s) generated",
+              "class": "nsg:CranialWindowCollection",
+              "minCount": 1
+            },
+            {
+              "path": "prov:used",
+              "description": "The subject used",
+              "class": "nsg:Subject",
+              "minCount": 1,
+              "maxCount": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "this:StimulusShape",
+      "@type": "sh:NodeShape",
+      "label": "Stimulus shape definition",
+      "property": [
+        {
+          "path": "nsg:stimulusType",
+          "name": "Stimulus type",
+          "node": "{{base}}/schemas/neurosciencegraph/commons/typedlabeledontologyterm/v0.1.0/shapes/StimulusTypeOntologyTermShape",
+          "minCount": 1,
+          "maxCount": 1
+        },
+        {
+          "path": "nsg:eCode",
+          "name": "eCode",
+          "node": "{{base}}/schemas/neurosciencegraph/commons/typedlabeledontologyterm/v0.1.0/shapes/EcodeOntologyTermShape",
+          "maxCount": 1
+        },
+        {
+          "path": "schema:description",
+          "datatype": "xsd:string",
+          "maxCount": 1
+        }
+      ]
+    }
+  ]
+}
