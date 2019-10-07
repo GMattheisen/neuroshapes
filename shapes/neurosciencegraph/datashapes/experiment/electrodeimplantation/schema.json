@@ -1,68 +1,43 @@
 {
   "@context": [
-    "{{base}}/contexts/neurosciencegraph/core/schema/v0.1.0",
+    "https://incf.github.io/neuroshapes/contexts/schema.json",
     {
-      "this": "{{base}}/schemas/neurosciencegraph/electrophysiology/electrodeimplantation/v0.1.0/shapes/"
+      "this": "https://neuroshapes.org/dash/electrodeimplantation/shapes/"
     }
   ],
+  "@id": "https://neuroshapes.org/dash/electrodeimplantation",
   "@type": "nxv:Schema",
   "imports": [
-    "{{base}}/schemas/neurosciencegraph/commons/activity/v0.1.0",
-    "{{base}}/schemas/neurosciencegraph/commons/typedlabeledontologyterm/v0.1.0"
+    "https://neuroshapes.org/commons/activity"
   ],
-  "owl:deprecated":true,
+  "prov:wasDerivedFrom": "https://github.com/INCF/neuroshapes/blob/v0.3.15/modules/experiment/src/main/resources/schemas/neurosciencegraph/experiment/brainslicing/v1.0.0.json",
   "shapes": [
     {
-      "@id": "this:ElectrodeImplantationShape",
+      "@id": "this: ElectrodeImplantationShape",
       "@type": "sh:NodeShape",
       "label": "Electrode implantation shape definition",
-      "targetClass": "nsg:ElectrodeImplantation",
       "nodeKind": "sh:BlankNodeOrIRI",
+      "targetClass": "nsg:ElectrodeImplantation",
       "and": [
         {
-          "node": "{{base}}/schemas/neurosciencegraph/commons/activity/v0.1.0/shapes/ActivityShape"
+          "node": "https://neuroshapes.org/commons/activity/shapes/ActivityShape"
         },
         {
           "property": [
-            {
-              "path": "prov:generated",
-              "description": "The cranial window(s) generated",
-              "class": "nsg:CranialWindowCollection",
-              "minCount": 1
-            },
             {
               "path": "prov:used",
               "description": "The subject used",
               "class": "nsg:Subject",
               "minCount": 1,
               "maxCount": 1
+            },
+            {
+              "path": "nsg:anesthesia",
+              "name": "Anesthesia",
+              "description": "Anesthesia information",
+              "datatype": "xsd:string"
             }
           ]
-        }
-      ]
-    },
-    {
-      "@id": "this:StimulusShape",
-      "@type": "sh:NodeShape",
-      "label": "Stimulus shape definition",
-      "property": [
-        {
-          "path": "nsg:stimulusType",
-          "name": "Stimulus type",
-          "node": "{{base}}/schemas/neurosciencegraph/commons/typedlabeledontologyterm/v0.1.0/shapes/StimulusTypeOntologyTermShape",
-          "minCount": 1,
-          "maxCount": 1
-        },
-        {
-          "path": "nsg:eCode",
-          "name": "eCode",
-          "node": "{{base}}/schemas/neurosciencegraph/commons/typedlabeledontologyterm/v0.1.0/shapes/EcodeOntologyTermShape",
-          "maxCount": 1
-        },
-        {
-          "path": "schema:description",
-          "datatype": "xsd:string",
-          "maxCount": 1
         }
       ]
     }
